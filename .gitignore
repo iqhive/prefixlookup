@@ -1,0 +1,17 @@
+# Benchmark output and editor temporary files.
+benchmark*-results*.txt*
+*~
+.#*
+CICD_*
+bench.txt
+IQHIVE_*
+RESEARCH*
+RUN_*
+perf.data*
+*.log
+*.out
+tmp-*
+BEFORE_RENAME.md
+fibbench/*.txt
+fibbench/benchmark-results*
+fibbench/baseline.txt
