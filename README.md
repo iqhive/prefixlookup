@@ -1,5 +1,9 @@
 # Prefix Lookup
 
+<p align="center">
+  <img src="docs/hero.svg" width="836" alt="Prefix Lookup: hexadecimal wordmark, IPv4 longest-prefix matching, IPv4 and IPv6 parent traversal, and IQ Hive logo." />
+</p>
+
 Go packages for IPv4 and IPv6 prefix lookups. The packages grew out of several internal systems built over a number of years and are now available as open source.
 
 There is more than one package because the same trie shape did not suit every workload. Some systems needed very fast lookups, others needed to keep memory use low across hundreds of VRFs. Some dealt with frequent route changes in the control plane, and others needed to walk parent and child relationships as well as perform forwarding lookups.

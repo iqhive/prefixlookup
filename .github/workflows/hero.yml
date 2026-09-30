@@ -1,0 +1,30 @@
+name: README hero
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: hero-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  hero:
+    runs-on: ubuntu-latest
+    env:
+      GOMAXPROCS: "4"
+      GOWORK: "off"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: examples/hero/go.mod
+          cache-dependency-path: examples/hero/go.sum
+      - name: Validate fixtures and committed SVG
+        run: make hero-check
+      - name: Race and vet
+        run: |
+          go -C examples/hero test -p 1 -race ./...
+          go -C examples/hero vet -p 1 ./...
+      - name: Check module tidiness
+        run: go -C examples/hero mod tidy -diff
